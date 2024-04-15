@@ -2,12 +2,24 @@ name: End-to-end tests
 on: push
 jobs:
   cypress-run:
+    name: Run tests
     runs-on: ubuntu-22.04
-    name: Artifacts
     steps:
       - name: Checkout code
-
         uses: actions/checkout@v4
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+
+      - name: Copy .env file
+        run: |
+          cp .env.ci .env
+
+      - name: Run composer
+        run: |
+          composer install --no-interaction
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
