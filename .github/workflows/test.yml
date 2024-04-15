@@ -39,8 +39,7 @@ jobs:
           php-version: 8.2
 
       - name: Copy .env file
-        run: |
-          run: php -r "file_exists('.env.testing') || copy('.env.ci', '.env.testing');"
+        run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
       - name: Run composer
         run: composer update --no-interaction --no-progress  --prefer-dist --optimize-autoloader --ignore-platform-reqs
