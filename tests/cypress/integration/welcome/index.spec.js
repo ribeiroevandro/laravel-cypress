@@ -8,7 +8,7 @@ describe('Welcome', () => {
     it('redirect to login', () => {
         cy.visit('/');
 
-        cy.get('[data-cy="loginn"]').click()
+        cy.get('[data-cy="login"]').click()
 
     })
 });
