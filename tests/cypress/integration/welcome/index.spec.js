@@ -4,4 +4,11 @@ describe('Welcome', () => {
 
         cy.contains('Laravel');
     });
+
+    it('redirect to login', () => {
+        cy.visit('/');
+
+        cy.get('[data-cy="login"]').click()
+
+    })
 });
