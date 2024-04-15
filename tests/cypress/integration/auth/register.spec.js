@@ -1,6 +1,6 @@
 describe('Register page', () => {
     it('register a new user', () => {
-        cy.exec('php artisan migrate:fresh')
+        cy.refreshDatabase()
         cy.visit('/register');
         cy.get('#name').type('Evandro Ribeiro');
         cy.get('#email').type('ribeiroevandro@live.com');
@@ -12,6 +12,8 @@ describe('Register page', () => {
     });
 
     it('display message if email is already registered', () => {
+        cy.refreshDatabase()
+
         cy.visit('/register');
         cy.get('#name').type('Evandro Ribeiro');
         cy.get('#email').type('ribeiroevandro@live.com');
