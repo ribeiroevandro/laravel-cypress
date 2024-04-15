@@ -4,7 +4,7 @@
         "dev": "vite",
         "build": "vite build",
         "server": "php artisan serve",
-        "test:ci": "cypress run"
+        "test:ci": "cypress run --config baseUrl=http://localhost:8000"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
