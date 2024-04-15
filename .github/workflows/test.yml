@@ -40,8 +40,8 @@ jobs:
           start: |
             npm run build
             npm run server
-            npm run test:ci
-          wait-on: 'http://localhost:8000'
+            npm run cy:run:ci
+          wait-on: 'http://127.0.0.1:8000'
 
     services:
       mysql:
