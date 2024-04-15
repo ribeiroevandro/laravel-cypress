@@ -2,7 +2,7 @@ describe('Welcome', () => {
     it('shows a homepage', () => {
         cy.visit('/');
 
-        cy.contains('Evandro');
+        cy.contains('Laravel');
     });
 
     it('redirect to login', () => {
