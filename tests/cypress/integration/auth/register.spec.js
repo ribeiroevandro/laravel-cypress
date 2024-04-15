@@ -12,7 +12,6 @@ describe('Register page', () => {
     });
 
     it('display message if email is already registered', () => {
-        cy.refreshDatabase()
 
         cy.visit('/register');
         cy.get('#name').type('Evandro Ribeiro');
@@ -27,7 +26,6 @@ describe('Register page', () => {
         cy.get('#password').type('SaVLAq3&vX6F!ik&k8kiA^bAyLPN$@io');
         cy.get('#password_confirmation').type('SaVLAq3&vX6F!ik&k8kiA^bAyLPN$@io');
         cy.get('[data-test-id="register_button"]').click()
-        // cy.url().should('be.equal', `${Cypress.config("baseUrl")}/dashboard`);
         cy.contains('The email has already been taken.');
     });
 });
