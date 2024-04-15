@@ -7,7 +7,7 @@
         "cy:open:dev": "cypress open --config-file cy_develop.config.js",
         "cy:run:dev": "cypress run --config-file cy_develop.config.js",
         "cy:run:ci": "cypress run",
-        "generate": "yarn plop --plopfile generators/plopfile.js"
+        "generate": "plop --plopfile generators/plopfile.js"
     },
     "devDependencies": {
         "@tailwindcss/forms": "0.5.2",
