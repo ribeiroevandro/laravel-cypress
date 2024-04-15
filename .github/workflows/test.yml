@@ -11,10 +11,9 @@ jobs:
         ports:
           - 3306:3306
         env:
-          MYSQL_USER: laravel_user
-          MYSQL_PASSWORD: laravel_pass
-          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: laravel_cypress_testing
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+
         options: >-
           --health-cmd="mysqladmin ping"
           --health-interval=10s
