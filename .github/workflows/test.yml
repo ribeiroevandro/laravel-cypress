@@ -4,6 +4,23 @@ jobs:
   cypress-run:
     name: Run tests
     runs-on: ubuntu-22.04
+
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_cypress_testing
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,18 +40,28 @@ jobs:
 
       - name: Copy .env file
         run: |
-          cp .env.ci .env
-          cp .env.ci .env.testing
+          run: php -r "file_exists('.env.testing') || copy('.env.ci', '.env.testing');"
 
       - name: Run composer
-        run: |
-          composer install --no-interaction
+        run: composer update --no-interaction --no-progress  --prefer-dist --optimize-autoloader --ignore-platform-reqs
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Configuration caching for speed
+        run: php artisan config:cache
+
+      - name: Route caching for speed
+        run: php artisan route:cache
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
 
       - name: Install dependencies
         run: npm install
+
+      - name: Migrate
+        run: php artisan migrate
 
       - uses: cypress-io/github-action@v6
         with:
@@ -43,17 +70,3 @@ jobs:
             npm run server
             npm run cy:run:ci
           wait-on: 'http://127.0.0.1:8000'
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_DATABASE: laravel_cypress_testing
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
