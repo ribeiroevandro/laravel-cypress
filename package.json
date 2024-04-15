@@ -4,9 +4,9 @@
         "dev": "vite",
         "build": "vite build",
         "server": "php artisan serve",
-        "cy:open:dev": "cypress open",
-        "cy:run:dev": "cypress run",
-        "cy:run:ci": "cypress run --config-file ci.config.js"
+        "cy:open:dev": "cypress open --config-file ci.config.js",
+        "cy:run:dev": "cypress run --config-file ci.config.js",
+        "cy:run:ci": "cypress run"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",

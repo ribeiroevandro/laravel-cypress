@@ -12,7 +12,7 @@ module.exports = defineConfig({
         setupNodeEvents(on, config) {
             return require('./tests/cypress/plugins/index.js')(on, config)
         },
-        baseUrl: 'http://127.0.0.1:8000',
+        baseUrl: 'https://laravel-cypress.test',
         specPattern: 'tests/cypress/integration/**/*.spec.js',
         supportFile: 'tests/cypress/support/index.js',
         retries: 0
