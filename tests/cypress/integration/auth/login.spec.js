@@ -2,8 +2,9 @@ describe('Login page', () => {
     it('shows a login', () => {
         cy.visit('/login');
 
-        cy.get('#email').type('evandro@live.com')
+        cy.get('[data-test-id="login_button"]').click()
 
-        cy.contains('Laravel');
+        cy.contains('The email field is required.')
+        cy.contains('The password field is required.')
     });
 });
