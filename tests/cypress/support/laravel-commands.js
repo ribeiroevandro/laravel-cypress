@@ -14,7 +14,7 @@ Cypress.Commands.add('login', (attributes = {}) => {
     return cy
         .csrfToken()
         .then((token) => {
-            return cy.request({
+            return cy.visit({
                 method: 'POST',
                 url: '/__cypress__/login',
                 body: { ...requestBody, _token: token },
@@ -41,7 +41,7 @@ Cypress.Commands.add('login', (attributes = {}) => {
 Cypress.Commands.add('currentUser', () => {
     return cy.csrfToken().then((token) => {
         return cy
-            .request({
+            .visit({
                 method: 'POST',
                 url: '/__cypress__/current-user',
                 body: { _token: token },
@@ -69,7 +69,7 @@ Cypress.Commands.add('logout', () => {
     return cy
         .csrfToken()
         .then((token) => {
-            return cy.request({
+            return cy.visit({
                 method: 'POST',
                 url: '/__cypress__/logout',
                 body: { _token: token },
@@ -88,7 +88,7 @@ Cypress.Commands.add('logout', () => {
  */
 Cypress.Commands.add('csrfToken', () => {
     return cy
-        .request({
+        .visit({
             method: 'GET',
             url: '/__cypress__/csrf_token',
             log: false,
@@ -104,7 +104,7 @@ Cypress.Commands.add('csrfToken', () => {
 Cypress.Commands.add('refreshRoutes', () => {
     return cy.csrfToken().then((token) => {
         return cy
-            .request({
+            .visit({
                 method: 'POST',
                 url: '/__cypress__/routes',
                 body: { _token: token },
@@ -186,7 +186,7 @@ Cypress.Commands.add('create', (model, count = 1, attributes = {}, load = [], st
     return cy
         .csrfToken()
         .then((token) => {
-            return cy.request({
+            return cy.visit({
                 method: 'POST',
                 url: '/__cypress__/factory',
                 body: { ...requestBody, _token: token },
@@ -262,7 +262,7 @@ Cypress.Commands.add('artisan', (command, parameters = {}, options = {}) => {
     }
 
     return cy.csrfToken().then((token) => {
-        return cy.request({
+        return cy.visit({
             method: 'POST',
             url: '/__cypress__/artisan',
             body: { command: command, parameters: parameters, _token: token },
@@ -283,7 +283,7 @@ Cypress.Commands.add('php', (command) => {
     return cy
         .csrfToken()
         .then((token) => {
-            return cy.request({
+            return cy.visit({
                 method: 'POST',
                 url: '/__cypress__/run-php',
                 body: { command: command, _token: token },
