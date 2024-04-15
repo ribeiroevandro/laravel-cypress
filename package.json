@@ -3,6 +3,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vite build",
+        "server": "php artisan serve",
         "test:ci": "cypress run"
     },
     "devDependencies": {
