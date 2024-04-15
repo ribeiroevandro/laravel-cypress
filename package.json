@@ -4,8 +4,8 @@
         "dev": "vite",
         "build": "vite build",
         "server": "php artisan serve",
-        "cy:open:dev": "cypress open --config-file ci.config.js",
-        "cy:run:dev": "cypress run --config-file ci.config.js",
+        "cy:open:dev": "cypress open --config-file cy_develop.config.js",
+        "cy:run:dev": "cypress run --config-file cy_develop.config.js",
         "cy:run:ci": "cypress run"
     },
     "devDependencies": {
