@@ -12,7 +12,7 @@ module.exports = defineConfig({
         setupNodeEvents(on, config) {
             return require('./tests/cypress/plugins/index.js')(on, config)
         },
-        baseUrl: 'https://laravel-cypress.test',
+        baseUrl: process.env.EVANDRO,
         specPattern: 'tests/cypress/integration/**/*.spec.js',
         supportFile: 'tests/cypress/support/index.js',
         retries: 0
